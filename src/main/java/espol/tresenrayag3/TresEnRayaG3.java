@@ -6,11 +6,17 @@ package espol.tresenrayag3;
 
 /**
  *
- * @author elmay
+ * @author maycmont
  */
 public class TresEnRayaG3 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Board board = new Board();
+        int[][] positions = {{1,1}, {0,0}, {2,2}};
+        for (int[] position : positions) {
+            System.out.println(board);
+            board.markBox(position, 'X');
+        }
+        System.out.println(board);
     }
 }
