@@ -5,14 +5,20 @@
 package espol.tresenrayag3;
 
 /**
- *
+ * Casilla que almacena un valor char y limita la asignación del 
+ * mismo a una sola vez, además de enviar una notifación a suscriptores
+ * cuando se ha realizado la asignación.
  * @author maycmont
  */
 public class Box extends Publisher{
     private char value;
     
+    public Box() {
+        this.value = 0; // Representa una casilla vacía
+    }
+    
     public void setValue(char value) throws Exception{
-        if (value != 0) {
+        if (value != 0 && this.value == 0) {
             this.value = value;
             notifySuscribers();
         } else {

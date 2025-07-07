@@ -15,7 +15,11 @@ public class TresEnRayaG3 {
         int[][] positions = {{1,1}, {0,0}, {2,2}};
         for (int[] position : positions) {
             System.out.println(board);
-            board.markBox(position, 'X');
+            try {
+                board.markBox(position, 'X');
+            } catch (Exception e) {
+            }
+            
         }
         System.out.println(board);
     }

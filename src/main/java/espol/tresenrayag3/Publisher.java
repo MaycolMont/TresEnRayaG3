@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- *
+ * * Clase abstracta que representa un publicador en el patrón de diseño
+ * Observer. Permite a los suscriptores registrarse para recibir notificaciones
+ * cuando ocurra un evento relevante. Los suscriptores pueden ser añadidos o
+ * eliminados dinámicamente.
  * @author maycmont
  */
 public abstract class Publisher {

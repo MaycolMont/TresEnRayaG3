@@ -5,7 +5,8 @@
 package espol.tresenrayag3;
 
 /**
- *
+ *  Interfaz que define un suscriptor que recibe notificaciones
+ *  cuando ocurre un evento de interés, como un cambio en el estado
  * @author elmay
  */
 interface Suscriber {
