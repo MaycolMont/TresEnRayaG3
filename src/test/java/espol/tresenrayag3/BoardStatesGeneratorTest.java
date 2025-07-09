@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author elmay
+ * @author maycmont
  */
 public class BoardStatesGeneratorTest {
     
@@ -36,19 +36,42 @@ public class BoardStatesGeneratorTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of iterator method, of class BoardStatesGenerator.
-     */
+    
     @Test
-    public void testIterator() throws Exception {
-        System.out.println("iterator");
+    public void generatedBoardsDoNotModifyOriginal() {
+        System.out.println("generatedBoardsDoNotModifyOriginal");
         Board board = new Board();
-        board.markBox(new int[]{1, 1}, 'X');
-        BoardStatesGenerator instance = new BoardStatesGenerator(board, 'O');
-        Iterator<Board> expResult = null;
-        Iterator<Board> result = instance.iterator();
-        assertEquals(expResult, result);
+        BoardStatesGenerator generator = new BoardStatesGenerator(board, 'X');
+
+        for (Board state : generator) {
+            // El tablero original no debe haber cambiado
+            for (int row = 0; row < 3; row++) {
+                for (int col = 0; col < 3; col++) {
+                    assertEquals(0, board.getValueAt(row, col));
+                }
+            }
+        }
     }
+
+    
+    @Test
+    public void eachStateHasOnlyOneNewMark() {
+        System.out.println("StateHasOnlyOneNewMark");
+        Board board = new Board();
+        BoardStatesGenerator generator = new BoardStatesGenerator(board, 'X');
+
+        for (Board state : generator) {
+            int countMarks = 0;
+            for (int row = 0; row < 3; row++) {
+                for (int col = 0; col < 3; col++) {
+                    if (state.getValueAt(row, col) == 'X') {
+                        countMarks++;
+                    }
+                }
+            }
+            assertEquals(1, countMarks);
+    }
+}
+
     
 }

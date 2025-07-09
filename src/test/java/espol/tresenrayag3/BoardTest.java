@@ -42,10 +42,32 @@ public class BoardTest {
     @Test
     public void testMarkBox() throws Exception {
         System.out.println("markBox");
-        int[] position = null;
-        char value = ' ';
+        int[] position = {1, 2};
+        char value = 'X';
         Board instance = new Board();
         instance.markBox(position, value);
+        char result = instance.getValueAt(position[0], position[1]);
+        assertEquals(value, result);
+    }
+
+        @Test
+    public void testMarkBoxCorrectBox() throws Exception {
+        System.out.println("markBoxCorrectBox");
+        int[] position = {1, 2};
+        char value = 'X';
+        Board instance = new Board();
+        instance.markBox(position, value);
+        for (int i = 0; i<3; i++) {
+            for (int j = 0; i<3; i++) {
+                if (i != position[0] && j != position[1]) {
+                    char emptyValue = instance.getValueAt(i, j);
+                    char expectedResult = 0;
+                    assertEquals(expectedResult, emptyValue);
+                }
+            }
+        }
+        char result = instance.getValueAt(position[0], position[1]);
+        assertEquals(value, result);
     }
 
     /**
@@ -57,16 +79,35 @@ public class BoardTest {
         int row = 0;
         int column = 0;
         Board instance = new Board();
-        char expResult = ' ';
+        char expResult = 0;
         char result = instance.getValueAt(row, column);
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of getUtility method, of class Board.
-     */
     @Test
-    public void testGetUtility() {
+    public void testGetValueAtSetValue() throws Exception {
+        System.out.println("getValueAtSetValue");
+        int row = 0;
+        int column = 0;
+        Board instance = new Board();
+        instance.markBox(new int[]{row, column}, 'X');
+        char expResult = 'X';
+        char result = instance.getValueAt(row, column);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testGetValueAtFail() {
+        System.out.println("getValueAtFail");
+        int row = 4;
+        int column = 0;
+        Board instance = new Board();
+        boolean result = true;
+        try {
+            instance.getValueAt(row, column);
+            result = false;
+        } catch (Exception e) {}
+        assertTrue(result);
     }
 
     /**
@@ -83,24 +124,14 @@ public class BoardTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of toString method, of class Board.
-     */
     @Test
-    public void testToString() {
-        System.out.println("toString");
+    public void testCloneIndependet() throws Exception {
+        System.out.println("cloneIndependent");
+        int[] position = {1, 1};
         Board instance = new Board();
-        String expResult = "";
-        String result = instance.toString();
+        char result = instance.clone().getValueAt(position[0], position[1]);
+        instance.markBox(position, 'X');
+        char expResult = 0;
         assertEquals(expResult, result);
     }
-
-    /**
-     * Test of onNotify method, of class Board.
-     */
-    @Test
-    public void testOnNotify() {
-        System.out.println("onNotify");
-    }
-    
 }

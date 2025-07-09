@@ -9,11 +9,13 @@ package espol.tresenrayag3;
  * Contiene filas, columnas y diagonales, y permite marcar casillas.
  * @author maycmont
  */
+
+ // No tested
 public class Board implements Suscriber, Cloneable {
     private final Line[] rows = {new Line(), new Line(), new Line()};
     private final Line[] columns = {new Line(), new Line(), new Line()};
     private final Line[] diagonals = {new Line(), new Line()};
-    private Line[] lines;
+    private Line[] lines = new Line[8];
 
     /**
      * Constructor que inicializa el tablero creando las líneas
