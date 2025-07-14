@@ -97,7 +97,30 @@ public class Board implements Suscriber, Cloneable {
         }
         return newBoard;
     }
-    
+
+    public boolean hasWinner() {
+        for (Line line : rows)
+            if (line.isEqual())
+                return true;
+        for (Line line : columns)
+            if (line.isEqual())
+                return true;
+        for (Line line : diagonals)
+            if (line.isEqual())
+                return true;
+        return false;
+    }
+
+    public boolean isFull() {
+        for (Line row : rows) {
+            for (int i = 0; i < 3; i++) {
+                if (row.getAt(i).isEmpty())
+                    return false;
+            }
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         String rowsString = "";
