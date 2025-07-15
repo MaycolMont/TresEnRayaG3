@@ -14,13 +14,14 @@ public class TresEnRayaG3 {
     public static void main(String[] args) {
         Board board = new Board();
         Scanner scanner = new Scanner(System.in);
-        char currentPlayer = 'X';
-        boolean gameOver = false;
+        char currentPlayer = 'X';  //Juego empieza con jugador 'X'
+        boolean gameOver = false;  //Controla el estado final del juego
 
         while (!gameOver) {
             System.out.println(board);
             boolean moveSuccessful = false;
-
+            
+            //Solicita un movimiento al jugador mientras el movimiento elegido sea invalido
             while (!moveSuccessful) {
                 try {
                     System.out.print("Turno de " + currentPlayer + ". Ingrese fila y columna (0-2 separados por espacio): ");
@@ -42,8 +43,9 @@ public class TresEnRayaG3 {
             } else if (board.isFull()) {
                 System.out.println("¡Empate!");
                 gameOver = true;
+            // Cambia el turno del jugador solo si la tabla no tiene un ganador y no está llena(empate)
             } else {
-                if (currentPlayer == 'X') {
+                if (currentPlayer == 'X') {          
                     currentPlayer = 'O';
                 } else {
                     currentPlayer = 'X';

@@ -97,7 +97,7 @@ public class Board implements Suscriber, Cloneable {
         }
         return newBoard;
     }
-
+    //Retorna true si en la tabla ya existe un ganador verificando filas, columnas y diagonales
     public boolean hasWinner() {
         for (Line line : rows)
             if (line.isEqual())
@@ -110,7 +110,8 @@ public class Board implements Suscriber, Cloneable {
                 return true;
         return false;
     }
-
+    
+    //Retorna true si en la tabla no queda casilla vacia verificando por filas
     public boolean isFull() {
         for (Line row : rows) {
             for (int i = 0; i < 3; i++) {
